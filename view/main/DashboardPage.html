@@ -20,14 +20,27 @@
     </style>
   </head>
   <body>
-    <div>This is dashboard</div>
-    <form action="/user/logout" method="post">
-      <button type="submit">Logout</button>
-    </form>
-    <div class="flex flex-grow px-10 mt-4 space-x-6 overflow-auto">
-      {{ range $_, $url := $.urls }}
-      <div class="flex flex-col flex-shrink-0 w-72">
-        <div class="flex flex-col pb-2 overflow-auto">
+    <div class="flex flex-row-reverse items-center mr-10 mt-10 gap-3">
+      <form
+        action="/user/logout"
+        method="post"
+        class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+      >
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+    <div
+      class="flex flex-col items-center mt-6 space-y-3 overflow-auto mx-auto"
+    >
+      <a
+        href="/"
+        class="w-1/3 ml-10 mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Pendekin
+      </a>
+      <div class="flex flex-wrap w-3/5 gap-x-3">
+        {{ range $_, $url := $.urls }}
+        <div class="flex flex-col flex-shrink-0 w-72">
           <div
             class="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-100 group"
           >
@@ -59,13 +72,17 @@
               class="flex items-center h-6 px-3 text-xs font-semibold text-pink-500 bg-pink-100 rounded-full"
               >{{ $url.ShortenedUrl }}</span
             >
-            <h4 class="ml-1 mt-3 text-sm font-medium bg-white">
-              <a href="{{ $url.RealUrl }}" target="_blank" class="bg-white">{{ $url.RealUrl }}</a>
-            </h4>
+            <a
+              href="{{ $url.RealUrl }}"
+              target="_blank"
+              class="ml-1 mt-3 text-sm font-medium bg-white"
+            >
+              <p class="bg-white">{{ $url.RealUrl }}</p>
+            </a>
           </div>
         </div>
+        {{ end }}
       </div>
-      {{ end }}
     </div>
   </body>
 </html>

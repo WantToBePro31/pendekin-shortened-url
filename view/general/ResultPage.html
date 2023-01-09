@@ -1,0 +1,79 @@
+{{ define "general/ResultPage.html" }}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <style>
+      *,
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: rgb(49, 47, 47);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="flex flex-col gap-8 justify-center items-center w-screen h-screen"
+    >
+      <div class="flex">
+        <div
+          class="p-3 rounded-l-lg bg-yellow-400 text-gray-800 text-lg font-bold border-t border-b border-l border-yellow-500"
+        >
+          https://pendekin/
+        </div>
+        <div
+          class="p-3 border-t border-b text-gray-800 border-red-300 bg-red-200 font-bold text-lg w-96"
+          id="pendekin"
+        >
+          {{ .shortenedUrl }}
+        </div>
+        <div
+          class="flex gap-5 p-3 rounded-r-lg bg-green-400 text-gray-800 text-lg font-bold border-green-500 border-t border-b border-r"
+        >
+          <a href="#" onclick="copy()" class="w-6 h-6 rounded">
+            <button>
+              <box-icon name="copy" class="bg-green-400"></box-icon>
+            </button>
+          </a>
+          <a
+            href="/{{ .shortenedUrl }}"
+            class="w-6 h-6 rounded"
+            target="_blank"
+          >
+            <button>
+              <box-icon name="link-external" class="bg-green-400"></box-icon>
+            </button>
+          </a>
+        </div>
+      </div>
+      <div>
+        <a
+          href="/url"
+          class="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent"
+        >
+          Back</a
+        >
+      </div>
+    </div>
+    <script>
+      function copy() {
+        var copyText = document.getElementById("pendekin");
+        const el = document.createElement("textarea");
+        el.value = copyText.innerHTML.trim();
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+      }
+    </script>
+  </body>
+</html>
+{{ end }}

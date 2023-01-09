@@ -1,0 +1,113 @@
+{{ define "general/HomePage.html" }}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      *,
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: rgb(49, 47, 47);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex flex-col w-screen h-screen">
+      <div class="flex flex-row-reverse items-center mr-10 mt-10 gap-3">
+        <a
+          href="/user/login"
+          class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+        >
+          Login
+        </a>
+        <a
+          href="/user/register"
+          class="text-base font-medium leading-6 text-white whitespace-no-wrap transition duration-150 ease-in-out hover:text-indigo-500"
+        >
+          Register
+        </a>
+      </div>
+      <div class="flex justify-center items-center h-screen">
+        <div class="border border-amber-300 rounded p-1">
+          <div class="border rounded p-2">
+            {{ if .message }}
+            <div
+              class="bg-rose-500 border border-red-500 text-white px-2 py-1 rounded relative mt-2 mb-1"
+            >
+              {{ .message }}
+            </div>
+            {{ end }}
+            <form
+              action="/url/create"
+              method="post"
+              class="flex flex-col justify-center items-center gap-3"
+            >
+              <div>
+                <input
+                  type="text"
+                  name="real_url"
+                  class="bg-white w-64 p-1 placeholder:text-gray-500"
+                  placeholder="Input your real URL here"
+                  required
+                />
+              </div>
+              <div class="flex gap-1">
+                <input
+                  type="checkbox"
+                  name="randomized"
+                  id="randomized"
+                  value="false"
+                  onclick="randomizer()"
+                />
+                <input
+                  type="text"
+                  name="shortened_url"
+                  id="shortened_url"
+                  pattern="[a-zA-Z0-9]+"
+                  maxlength="20"
+                  class="bg-white w-60 p-1 placeholder:text-gray-500"
+                  placeholder="Input your shortened URL here"
+                />
+              </div>
+              <div class="text-indigo-500 font-semibold">
+                Check to randomize shortened URL
+              </div>
+              <button
+                type="submit"
+                class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 shadow-lg shadow-cyan-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-1 mb-2"
+              >
+                Pendekin
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <script>
+        function randomizer() {
+          const randomized = document.getElementById("randomized");
+          const shortened_url = document.getElementById("shortened_url");
+          if (randomized.checked == true) {
+            randomized.value = true;
+            shortened_url.disabled = true;
+            shortened_url.value = "";
+            shortened_url.placeholder = "",
+            shortened_url.style.backgroundColor = "rgb(128,128,128)";
+          } else if (randomized.checked == false) {
+            randomized.value = false;
+            shortened_url.disabled = false;
+            shortened_url.placeholder = "Input your shortened URL here",
+            shortened_url.style.backgroundColor = "white";
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>
+{{ end }}

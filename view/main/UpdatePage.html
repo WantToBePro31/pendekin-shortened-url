@@ -1,0 +1,74 @@
+{{ define "main/UpdatePage.html" }}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <style>
+      .content {
+        background: url("https://i.ibb.co/H4TfZJR/unicorn.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body class="content flex flex-col justify-center items-center h-screen">
+    <div
+      class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8"
+    >
+      <a
+        href="/dashboard"
+        class="absolute flex items-center justify-center w-6 h-6 mt-3 mr-2 text-gray-900 rounded"
+      >
+        <button>
+          <box-icon name="arrow-back"></box-icon>
+        </button>
+      </a>
+      <form class="space-y-4" action="/url/update/{{ .id }}" method="POST">
+        <h1 class="text-3xl font-semibold text-gray-900 text-center">
+          Edit URL
+        </h1>
+        <div>
+          <label
+            for="real_url"
+            class="block mb-2 text-lg font-semibold text-gray-900"
+            >Real URL</label
+          >
+          <input
+            type="text"
+            name="real_url"
+            id="real_url"
+            class="bg-gray-600 border border-gray-400 text-white text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            value="{{ .url.RealUrl }}"
+          />
+        </div>
+        <div>
+          <label
+            for="shortened_url"
+            class="block mb-2 text-lg font-semibold text-gray-900"
+            >Shortened URL</label
+          >
+          <input
+            type="text"
+            name="shortened_url"
+            id="shortened_url"
+            pattern="[a-zA-Z0-9]+"
+            value="{{ .url.ShortenedUrl }}"
+            class="bg-gray-600 border border-gray-400 text-white text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-md px-5 py-2.5 text-center"
+        >
+          Update URL
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
+{{ end }}

@@ -1,0 +1,124 @@
+{{ define "auth/RegisterPage.html" }}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <style>
+      .content {
+        background: url("https://i.ibb.co/H4TfZJR/unicorn.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body class="content flex flex-col justify-center items-center h-screen">
+    {{ if .message }} {{ if eq .message "Register success!" }}
+    <div
+      class="bg-green-400 border border-green-500 text-white px-2 py-1 rounded relative mb-1"
+    >
+      {{ .message }}
+    </div>
+    {{ else }}
+    <div
+      class="bg-rose-500 border border-red-500 text-white px-2 py-1 rounded relative mb-1"
+    >
+      {{ .message }}
+    </div>
+    {{ end }} {{ end }}
+    <div
+      class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8"
+    >
+      <a
+        href="/"
+        class="absolute flex items-center justify-center w-6 h-6 mt-3 mr-2 text-gray-900 rounded"
+      >
+        <button>
+          <box-icon name="arrow-back"></box-icon>
+        </button>
+      </a>
+      <form class="space-y-4" action="/user/register" method="POST">
+        <h1 class="text-4xl font-semibold text-gray-900 text-center">
+          Register
+        </h1>
+        <div>
+          <label
+            for="fullname"
+            class="block mb-1 text-lg font-medium text-gray-900"
+            >Fullname</label
+          >
+          <input
+            type="text"
+            name="fullname"
+            id="fullname"
+            class="bg-gray-600 border border-gray-400 text-white text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="Dummy Name"
+            maxlength="50"
+            required
+          />
+        </div>
+        <div>
+          <label
+            for="username"
+            class="block mb-1 text-lg font-medium text-gray-900"
+            >Username</label
+          >
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="bg-gray-600 border border-gray-400 text-white text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="Dummy"
+            maxlength="20"
+            required
+          />
+        </div>
+        <div>
+          <label
+            for="email"
+            class="block mb-1 text-lg font-medium text-gray-900"
+            >Email</label
+          >
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="bg-gray-600 border border-gray-400 text-white text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="dummy@gmail.com"
+            required
+          />
+        </div>
+        <div>
+          <label
+            for="password"
+            class="block mb-1 text-lg font-medium text-gray-900"
+            >Password</label
+          >
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="********"
+            class="bg-gray-600 border border-gray-400 text-white text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-md px-5 py-2.5 text-center"
+        >
+          Create account
+        </button>
+        <div class="text-md font-medium text-gray-600">
+          Already have an account?
+          <a href="/user/login" class="text-blue-700">Login to your account</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+{{ end }}

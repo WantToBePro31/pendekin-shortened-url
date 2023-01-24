@@ -16,6 +16,7 @@ type UserHandlerWeb interface {
 	RegisterProcess(c *gin.Context)
 	Login(c *gin.Context)
 	LoginProcess(c *gin.Context)
+	Logout(c *gin.Context)
 }
 
 type userHandlerWeb struct {

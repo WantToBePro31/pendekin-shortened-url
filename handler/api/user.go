@@ -13,6 +13,7 @@ import (
 type UserHandlerApi interface {
 	Register(c *gin.Context)
 	Login(c *gin.Context)
+	Logout(c *gin.Context)
 }
 
 type userHandlerApi struct {
